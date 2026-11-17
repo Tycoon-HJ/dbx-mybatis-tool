@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyBatis工具箱</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="page-head">
+        <h1>MyBatis工具箱</h1>
+        <span class="sub">日志回填：Preparing 的 ? 用 Parameters 回填；XML 模式：求值动态标签并内联 #{}，得到可直接执行的 SQL</span>
+      </header>
+
+      <section class="pane input-pane">
+        <div class="pane-head">
+          <div class="mode-switch">
+            <button type="button" class="mode-btn active" data-mode="log">日志回填</button>
+            <button type="button" class="mode-btn" data-mode="xml">XML 转 SQL</button>
+          </div>
+          <span class="actions">
+            <button type="button" class="btn" id="config-btn">格式配置</button>
+            <button type="button" class="btn" id="sample-btn">填入示例</button>
+            <button type="button" class="btn" id="clear-btn">清空</button>
+          </span>
+        </div>
+        <div id="log-pane">
+          <textarea id="log-input" spellcheck="false"
+placeholder="Preparing: select * from t where create_time >= ? and status = ?
+Parameters: 2026-10-06 00:00:00(String), null
+
+（行首的 ==&gt; / &lt;== 箭头有无均可，日志整行或仅 Preparing/Parameters 部分都能识别）
+
+JSON 日志：{&quot;SqlId&quot;:&quot;...&quot;,&quot;ExecuteSql&quot;:&quot;select ... ?&quot;,&quot;Parameters&quot;:&quot;[admin01]&quot;}"></textarea>
+        </div>
+        <div id="xml-pane" hidden>
+          <textarea id="xml-input" spellcheck="false"
+placeholder="&lt;select id=&quot;search&quot;&gt;
+  select * from t_user
+  &lt;where&gt;
+    &lt;if test=&quot;name != null&quot;&gt;and name like #{name}&lt;/if&gt;
+  &lt;/where&gt;
+&lt;/select&gt;"></textarea>
+          <div class="param-bar">
+            <label for="param-input">参数 JSON</label>
+            <span class="hint">超大整数请写成字符串；未提供的参数用 NULL 代替</span>
+          </div>
+          <textarea id="param-input" spellcheck="false"
+placeholder='{"name": "张%", "statuses": [1, 2]}'></textarea>
+        </div>
+      </section>
+
+      <section class="pane results-pane">
+        <div class="summary" id="summary" hidden><span id="summary-text"></span></div>
+        <div id="results"></div>
+      </section>
+    </div>
+
+    <div class="modal" id="config-modal" hidden>
+      <div class="modal-card">
+        <header class="modal-head">
+          <h2>日志格式配置</h2>
+          <button type="button" class="btn" id="config-close">关闭</button>
+        </header>
+        <p class="modal-hint">
+          不启用配置时使用内置解析；可保存多个配置，只有选中的一个生效。<code>{sql}</code> 必填，
+          支持 <code>{time}</code> <code>{mapper}</code> <code>{parameters}</code>，其他 <code>{名字}</code> 用于跳过中间字段。
+          其余文本按字面量匹配，每行日志独立匹配；只写日志中稳定出现的片段即可，不必覆盖整行。
+        </p>
+        <div class="config-list" id="config-list"></div>
+        <div class="config-form">
+          <input type="text" id="config-name" placeholder="配置名称，如：JSON SQL 日志" />
+          <textarea id="config-format" spellcheck="false"
+placeholder='日志格式，如：&quot;SqlId&quot;:&quot;{mapper}&quot;,&quot;ExecuteSql&quot;:&quot;{sql}&quot;,&quot;Success&quot;:&quot;{success}&quot;,&quot;Parameters&quot;:&quot;{parameters}&quot;'></textarea>
+          <label class="config-option">
+            <input type="checkbox" id="config-quote-all" />
+            所有参数都加单引号，按字符串处理（作用于当前选中的配置或默认解析；数字 1 → '1'，null 仍为 NULL）
+          </label>
+          <div class="config-actions">
+            <button type="button" class="btn" id="config-example">填入示例</button>
+            <button type="button" class="btn btn-primary" id="config-add">添加并启用</button>
+          </div>
+          <div class="config-error" id="config-error"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

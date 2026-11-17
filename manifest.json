@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/t8y2/dbx/main/plugins/manifest.schema.json",
+  "manifest_version": 1,
+  "id": "dbx-mybatis-tool",
+  "name": "dbx-mybatis-tool",
+  "version": "1.0.0",
+  "publisher": "tycoon",
+  "description": "Paste MyBatis DEBUG logs or mapper XML and get executable SQL.",
+  "icon": "assets/plugin.svg",
+  "source": "https://github.com/Tycoon-HJ/dbx-mybatis-tool",
+  "homepage": "https://github.com/Tycoon-HJ/dbx-mybatis-tool",
+  "engines": {
+    "host_api": "1"
+  },
+  "entrypoints": {
+    "ui": {
+      "root": "ui",
+      "entry": "ui/index.html"
+    }
+  },
+  "contributions": [
+    {
+      "type": "workbench",
+      "id": "dbx-mybatis-tool.workbench",
+      "label": "MyBatis SQL Fill",
+      "description": "Sandboxed frontend workbench contributed by MyBatis SQL Fill.",
+      "icon": "assets/plugin.svg"
+    }
+  ],
+  "localizations": {
+    "zh-CN": {
+      "name": "MyBatis工具箱",
+      "description": "粘贴 MyBatis 日志或 mapper XML，生成可直接执行的 SQL。",
+      "contributions": {
+        "dbx-mybatis-tool.workbench": {
+          "label": "MyBatis工具箱",
+          "description": "粘贴日志，参数回填，一键复制可执行 SQL。"
+        }
+      }
+    }
+  }
+}
