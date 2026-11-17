@@ -1,0 +1,2 @@
+# dbx-mybatis-tool
+dbx的mybatis插件，用于mybatis日志快速转为可执行的sql和mapper中的xml文件快速转为可执行的sql
