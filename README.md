@@ -1,6 +1,7 @@
 # MyBatis 工具箱（DBX 插件）
 
-> 把 MyBatis 调试日志或 mapper XML 一步转换成可直接执行的 SQL。参考（MyBatis SQL Fill插件，原地址详见：https://github.com/sunsugary/dbx-plugin-mybatis-sql-fill）
+> 把 MyBatis 调试日志或 mapper XML 一步转换成可直接执行的 SQL。
+> 参考（MyBatis SQL Fill插件，地址详见：https://github.com/sunsugary/dbx-plugin-mybatis-sql-fill）
 
 `dbx-mybatis-tool` 是 DBX 的纯前端插件。它不连接数据库、不依赖后端服务，所有解析和 SQL 生成都在浏览器沙箱内完成：粘贴日志或 XML，即时得到展开后的 SQL，并可一键复制到 SQL 编辑器执行。
 
