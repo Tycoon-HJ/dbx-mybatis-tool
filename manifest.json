@@ -22,8 +22,8 @@
     {
       "type": "workbench",
       "id": "dbx-mybatis-tool.workbench",
-      "label": "MyBatis SQL Fill",
-      "description": "Sandboxed frontend workbench contributed by MyBatis SQL Fill.",
+      "label": "dbx-mybatis-tool",
+      "description": "Sandboxed frontend workbench contributed by dbx-mybatis-tool.",
       "icon": "assets/plugin.svg"
     }
   ],

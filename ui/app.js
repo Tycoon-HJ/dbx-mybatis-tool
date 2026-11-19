@@ -1,5 +1,5 @@
 /**
- * MyBatis SQL Fill — 解析 MyBatis / MyBatis-Plus 的 DEBUG 日志，
+ * dbx-mybatis-tool — 解析 MyBatis / MyBatis-Plus 的 DEBUG 日志，
  * 把 Parameters 行中的参数回填到 Preparing SQL 的 ? 占位符，得到可直接执行的 SQL。
  *
  * 解析引擎为纯函数（parseLog / parseParams / fillSql 等）并 export，
